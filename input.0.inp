@@ -1,0 +1,68 @@
+set step              0
+
+structure             vac_protein2.psf
+#structure	      step3_pbcsetup.xplor.ext.psf
+coordinates           vac_protein.pdb
+
+outputname            input.$step
+outputEnergies        1000
+outputTiming          1000
+dcdfreq               500
+dcdUnitCell           yes
+
+paraTypeCharmm        on
+parameters            toppar/par_all36m_prot.prm
+#### Need to load in these other things so water_ions doesnt crash
+parameters            toppar/par_all36_na.prm
+parameters            toppar/par_all36_carb.prm
+parameters            toppar/par_all36_lipid.prm
+parameters            toppar/par_all36_cgenff.prm
+####
+parameters            toppar/toppar_water_ions.str
+#### And add this shit just cause
+parameters            toppar/toppar_dum_noble_gases.str
+parameters            toppar/toppar_all36_prot_d_aminoacids.str
+parameters            toppar/toppar_all36_prot_fluoro_alkanes.str
+parameters            toppar/toppar_all36_prot_heme.str
+parameters            toppar/toppar_all36_prot_na_combined.str
+parameters            toppar/toppar_all36_prot_retinol.str
+parameters            toppar/toppar_all36_na_nad_ppi.str
+parameters            toppar/toppar_all36_na_rna_modified.str
+
+# Force-Field Parameters
+exclude               scaled1-4
+1-4scaling            1.0
+cutoff                12.0
+switching             on
+switchdist            10.0
+pairlistdist          14.5
+vdwForceSwitching     yes
+
+# Integrator Parameters
+timestep              2.0  
+rigidBonds            all  
+nonbondedFreq         1
+fullElectFrequency    1 
+stepspercycle         20
+
+# Constant Temperature Control
+temperature           300.15
+langevin              on    
+langevinDamping       1     
+langevinTemp          300.15
+langevinHydrogen      off 
+
+dielectric 80
+
+colvars               on
+colvarsConfig         colvars.conf 
+
+colvarbias changeconfig alpha "centers {101}   forceconstant 0.1"
+colvarbias changeconfig beta  "centers {-172}   forceconstant 0.1"
+colvarbias changeconfig gamma "centers {27}   forceconstant 0.1"
+colvarbias changeconfig theta "centers {102}   forceconstant 0.1"
+colvarbias changeconfig phi   "centers {-170}   forceconstant 0.1"
+colvarbias changeconfig dist  "centers {38.25}   forceconstant 10.0"
+
+minimize 1000
+run 100000
