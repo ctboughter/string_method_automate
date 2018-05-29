@@ -1,0 +1,100 @@
+set step 0
+set temp      300.15
+structure             ../step3_pbcsetup.xplor.ext.psf
+coordinates           ../step3_pbcsetup.pdb
+set inputname      step4_equilibration;
+binCoordinates     $inputname.coor;
+binVelocities      $inputname.vel;
+extendedSystem     $inputname.xsc;
+ 
+outputname            hydrate.$step;
+restartfreq	      500;
+outputEnergies        1000;
+outputTiming          1000;
+dcdfreq               10000;
+dcdUnitCell           yes;
+xstFreq		      500;
+
+paraTypeCharmm        on;
+parameters            toppar/par_all36m_prot.prm
+#### Need to load in these other things so water_ions doesnt crash
+parameters            toppar/par_all36_na.prm
+parameters            toppar/par_all36_carb.prm
+parameters            toppar/par_all36_lipid.prm
+parameters            toppar/par_all36_cgenff.prm
+####
+parameters            toppar/toppar_water_ions.str
+#### And add this shit just cause
+parameters            toppar/toppar_dum_noble_gases.str
+parameters            toppar/toppar_all36_prot_d_aminoacids.str
+parameters            toppar/toppar_all36_prot_fluoro_alkanes.str
+parameters            toppar/toppar_all36_prot_heme.str
+parameters            toppar/toppar_all36_prot_na_combined.str
+parameters            toppar/toppar_all36_prot_retinol.str
+parameters            toppar/toppar_all36_na_nad_ppi.str
+parameters            toppar/toppar_all36_na_rna_modified.str
+
+# Force-Field Parameters
+exclude               scaled1-4;
+1-4scaling            1.0;
+cutoff                12.0;
+switching             on;
+switchdist            10.0;
+pairlistdist          15.0;
+vdwForceSwitching     yes;
+pairlistsPerCycle     2;
+
+# Integrator Parameters
+timestep              2.0;  
+rigidBonds            all;  
+nonbondedFreq         1;
+fullElectFrequency    1; 
+stepspercycle         20;
+
+#Wrapstuff
+wrapWater	on;
+wrapAll		on;
+wrapNearest	off;
+
+#PME
+source	checkfft.str
+PME                yes;
+PMEInterpOrder       6;                # interpolation order (spline order 6 in charmm)
+PMEGridSizeX     $fftx;                # should be close to the cell size
+PMEGridSizeY     $ffty;                # corresponds to the charmm input fftx/y/z
+PMEGridSizeZ     $fftz;
+
+# Constant Pressure Control (variable volume)
+useGroupPressure       yes;            # use a hydrogen-group based pseudo-molecular viral to calc press and
+                                       # has less fluctuation, is needed for rigid bonds (rigidBonds/SH
+useFlexibleCell         no;            # yes for anisotropic system like membrane
+useConstantRatio        no;            # keeps the ratio of the unit cell in the x-y plane constant A=B
+
+langevinPiston          on;            # Nose-Hoover Langevin piston pressure control
+langevinPistonTarget  1.01325;         # target pressure in bar 1atm = 1.01325bar
+langevinPistonPeriod  50.0;            # oscillation period in fs. correspond to pgamma T=50fs=0.05ps
+                                       # f=1/T=20.0(pgamma)
+langevinPistonDecay   25.0;            # oscillation decay time. smaller value correspons to larger random
+				       # forces and increased coupling to the Langevin temp bath.					             # Equall or smaller than piston period
+langevinPistonTemp   $temp;            # coupled to heat bath
+
+# Constant Temperature Control
+langevin              on;    
+langevinDamping       1;     
+langevinTemp          300.15;
+langevinHydrogen      off; 
+
+colvars               on
+colvarsConfig         colvars_quat.conf 
+
+source CVs.tcl
+
+colvarbias changeconfig Theta "centers {101}   forceconstant 0.0"
+colvarbias changeconfig Phi  "centers {-172}   forceconstant 0.0"
+colvarbias changeconfig Psi "centers {27}   forceconstant 0.0"
+colvarbias changeconfig polarTheta "centers {102}   forceconstant 0.0"
+colvarbias changeconfig polarPhi   "centers {-170}   forceconstant 0.0"
+colvarbias changeconfig dist  "centers {38.25}   forceconstant 0.0"
+colvarbias changeconfig Pin "centers {21.069}   forceconstant 0.0"
+ 
+run 2500000
