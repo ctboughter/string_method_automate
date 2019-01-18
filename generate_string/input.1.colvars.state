@@ -1,0 +1,176 @@
+configuration {
+  step       500000
+  dt 2.000000e+00
+  version 2018-05-15
+}
+
+colvar {
+  name RMSD_PROA
+  x  1.19154639198053e+00
+}
+
+colvar {
+  name RMSD_PROB
+  x  1.11877434251019e+00
+}
+
+colvar {
+  name B302-SC1
+  x  1.08223394337131e+00
+}
+
+colvar {
+  name B302-SC2
+  x  1.50443475891870e+00
+}
+
+colvar {
+  name Pin
+  x  1.97342769538740e+01
+}
+
+colvar {
+  name Ang
+  x  8.76373008148893e+01
+}
+
+colvar {
+  name Ang2
+  x  7.80316255108741e+01
+}
+
+colvar {
+  name Theta
+  x  1.22619822395774e+02
+}
+
+colvar {
+  name Phi
+  x -1.72361555731212e+02
+}
+
+colvar {
+  name Psi
+  x  9.80708791852438e+00
+}
+
+colvar {
+  name polarTheta
+  x  8.69694515616719e+01
+}
+
+colvar {
+  name polarPhi
+  x -1.79322873274437e+02
+}
+
+colvar {
+  name dist
+  x  3.63344535023516e+01
+}
+
+restraint {
+  configuration {
+    step 500000
+    name harmonic1
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name harmonic2
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name harmonic3
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name harmonic4
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name Pin
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name harmonic6
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name harmonic7
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name Theta
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name Phi
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name Psi
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name polarTheta
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name polarPhi
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name dist
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name Angw
+  }
+}
+
+restraint {
+  configuration {
+    step 500000
+    name Ang2w
+  }
+}
+

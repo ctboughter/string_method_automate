@@ -18,3 +18,6 @@ the hydrate.0.colvars.traj file. If possible, keep your restraints in the same o
 
 TO SUM IT ALL UP: Equilibrate your structure and run a short simulation with colvars set up but NOT
 applying a force to get the starting structures and colvar variables for generating the string.
+
+NOTE 01/18/19: The first version of this directory used the quaternion to define angles between proteins.
+This newer version instead uses the P1-P2-P3 method (i.e. picking points from within each protein to define angles)

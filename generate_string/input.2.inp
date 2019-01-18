@@ -1,8 +1,8 @@
 set step 2
 
-structure             vac_protein2.psf
+structure             vac_protein.psf
 
-coordinates           vac_protein2.pdb
+coordinates           vac_protein.pdb
 set inputname      input.1;
 binCoordinates     $inputname.coor;
 binVelocities      $inputname.vel;
@@ -10,7 +10,7 @@ extendedSystem     $inputname.xsc;
 outputname            input.$step
 outputEnergies        1000
 outputTiming          1000
-dcdfreq               500
+dcdfreq               5000
 dcdUnitCell           yes
 
 paraTypeCharmm        on
@@ -49,6 +49,7 @@ fullElectFrequency    1
 stepspercycle         20
 
 # Constant Temperature Control
+#temperature           300.15 # Only here when there is no initial coors
 langevin              on    
 langevinDamping       1     
 langevinTemp          300.15
@@ -57,14 +58,13 @@ langevinHydrogen      off
 dielectric 80
 
 colvars               on
-source		      CVS.tcl
-colvarsConfig         colvars.conf 
-colvarbias changeconfig alpha "centers {1.21749e+02}   forceconstant 0.1"
-colvarbias changeconfig beta  "centers {1.77827e+02}   forceconstant 0.1"
-colvarbias changeconfig gamma "centers {5.13774e+01}   forceconstant 0.1"
-colvarbias changeconfig theta "centers {7.79308e+01}   forceconstant 0.1"
-colvarbias changeconfig phi   "centers {1.92454e+02}   forceconstant 0.1"
-colvarbias changeconfig dist  "centers {3.97468e+01}   forceconstant 10.0"
-colvarbias changeconfig Pin   "centers {2.54445e+01}   forceconstant 1.0"
+colvarsConfig         colvars_old.conf
+colvarbias changeconfig Theta "centers {1.24049e+02}   forceconstant 0.1"
+colvarbias changeconfig Phi  "centers {-1.75675e+02}   forceconstant 0.1"
+colvarbias changeconfig Psi "centers {8.40304e+00}   forceconstant 0.1"
+colvarbias changeconfig polarTheta "centers {8.59388e+01}   forceconstant 0.1"
+colvarbias changeconfig polarPhi   "centers {-1.78714e+02}   forceconstant 0.1"
+colvarbias changeconfig dist  "centers {3.71000e+01}   forceconstant 10.0"
+#colvarbias changeconfig Pin   "centers {2.45000e+01}   forceconstant 1.0"
  
 run 500000

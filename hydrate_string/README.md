@@ -30,5 +30,4 @@ this might take a hot minute. Be sure to submit as a job)
 
 5. Have fun with it! (jk there'll probably be more instructions here soon)
 
-XOXO
 - Christopher T Boughter 1/18/18
