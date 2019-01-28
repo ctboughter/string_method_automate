@@ -59,14 +59,14 @@ dielectric 80
 
 colvars               on
 source ../CVs.tcl
-colvarsConfig         ../colvars.conf 
-colvarbias changeconfig alpha "centers {3.18492e+02}   forceconstant 0.1"
-colvarbias changeconfig beta  "centers {1.27323e+02}   forceconstant 0.1"
-colvarbias changeconfig gamma "centers {3.78397e+01}   forceconstant 0.1"
-colvarbias changeconfig theta "centers {8.98307e+01}   forceconstant 0.1"
-colvarbias changeconfig phi   "centers {5.23606e+01}   forceconstant 0.1"
-colvarbias changeconfig dist  "centers {3.84537e+01}   forceconstant 10.0"
-colvarbias changeconfig Pin   "centers {2.04416e+01}   forceconstant 1.0"
+colvarsConfig         ../colvars_old.conf 
+colvarbias changeconfig Theta "centers {1.25434e+02}   forceconstant 0.1"
+colvarbias changeconfig Phi  "centers {1.88130e+02}   forceconstant 0.1"
+colvarbias changeconfig Psi "centers {8.63075e+00}   forceconstant 0.1"
+colvarbias changeconfig polarTheta "centers {8.52997e+01}   forceconstant 0.1"
+colvarbias changeconfig polarPhi   "centers {-1.78554e+02}   forceconstant 0.1"
+colvarbias changeconfig dist  "centers {3.66e+01}   forceconstant 10.0"
+#colvarbias changeconfig Pin   "centers {2.42500e+01}   forceconstant 1.0"
 
 minimize 1000
 run 500000

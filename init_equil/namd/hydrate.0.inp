@@ -85,16 +85,13 @@ langevinTemp          300.15;
 langevinHydrogen      off; 
 
 colvars               on
-colvarsConfig         colvars_quat.conf 
-
-source CVs.tcl
-
-colvarbias changeconfig Theta "centers {101}   forceconstant 0.0"
-colvarbias changeconfig Phi  "centers {-172}   forceconstant 0.0"
-colvarbias changeconfig Psi "centers {27}   forceconstant 0.0"
-colvarbias changeconfig polarTheta "centers {102}   forceconstant 0.0"
-colvarbias changeconfig polarPhi   "centers {-170}   forceconstant 0.0"
-colvarbias changeconfig dist  "centers {38.25}   forceconstant 0.0"
-colvarbias changeconfig Pin "centers {21.069}   forceconstant 0.0"
+colvarsConfig         colvars_old.conf 
+colvarbias changeconfig Theta "centers {0}   forceconstant 0.0"
+colvarbias changeconfig Phi  "centers {2.5e+00}   forceconstant 0.0"
+colvarbias changeconfig Psi "centers {-4e+00}   forceconstant 0.0"
+colvarbias changeconfig polarTheta "centers {9.25e+01}   forceconstant 0.0"
+colvarbias changeconfig polarPhi   "centers {-1.70e+02}   forceconstant 0.0"
+colvarbias changeconfig dist  "centers {6.925e+01}   forceconstant 0.0"
+colvarbias changeconfig Pin "centers {19.75}   forceconstant 1.0"
  
-run 2500000
+run 500000
